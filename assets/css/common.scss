@@ -5,12 +5,26 @@
   font-style: normal;
 }
 body {
-  /*background: linear-gradient(
-    $black-color 35%,
-    $pink-color 50%,
-    $dark-purple-color 100%
-  );*/
+  overflow: hidden;
+  height: 100%;
   background: $black-color;
+  background: linear-gradient($dark-purple-color, $black-color 20%);
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 5px 5px;
+    background-image: linear-gradient(
+        to right,
+        $dark-purple-color1 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, $dark-purple-color1 1px, transparent 1px);
+  }
 }
 
 .glitch {

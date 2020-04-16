@@ -27,8 +27,6 @@ export default {
 <style lang="scss" scoped>
 .heading {
   @include font(10rem, $white-color, 700);
-  position: absolute;
-  top: 10%;
   line-height: 1;
   letter-spacing: 0.3rem;
   text-transform: uppercase;

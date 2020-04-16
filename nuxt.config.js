@@ -2,6 +2,7 @@ module.exports = {
   /*
    ** Headers of the page
    */
+  mode: "spa",
   env: {
     baseUrl: process.env.production || "http://localhost:3000",
   },
@@ -29,6 +30,7 @@ module.exports = {
   styleResources: {
     scss: ["~/assets/css/global.scss"],
   },
+  plugins: ["~/plugins/anime.js"],
   build: {
     /*
      ** Run ESLint on save

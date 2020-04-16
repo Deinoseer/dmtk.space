@@ -5,25 +5,59 @@
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    const sunEl = ".sun";
+    const sunAnimate = this.$anime
+      .timeline({
+        duration: 4000,
+      })
+      .add({
+        targets: sunEl,
+        translateY: [500, 0],
+        opacity: [0, 1],
+        easing: "linear",
+      });
+    sunAnimate.finished.then(() => {
+      this.$anime
+        .timeline({
+          loop: true,
+          direction: "alternate",
+          duration: 2000,
+        })
+        .add({
+          targets: ".sun .sun__part",
+          scale: 2,
+          easing: "easeInOutCirc",
+          delay: this.$anime.stagger(100),
+        });
+    });
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 .sun {
-  position: absolute;
+  position: relative;
   z-index: -1;
-  top: 30%;
   display: block;
   width: 300px;
   height: 300px;
   background: transparent;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0px 0px 15px 5px $hot-pink-color;
+  box-shadow: 0px 0px 15px 3px $hot-pink-color;
+  animation: fade 2s linear alternate infinite;
+  @include keyframes(fade) {
+    to {
+      box-shadow: 0px 0px 15px 10px $orange-color;
+    }
+  }
   &:before {
     content: "";
     display: block;
     position: absolute;
+    z-index: 1;
     top: 0;
     left: 0;
     width: 100%;

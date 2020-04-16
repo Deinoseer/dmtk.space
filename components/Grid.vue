@@ -1,11 +1,21 @@
 <template>
   <div class="grid">
-    <div v-for="i in 200" :key="i" class="grid__square"></div>
+    <div v-for="i in 100" :key="i" class="grid__square"></div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    const timeline = this.$anime.timeline();
+    timeline.add({
+      targets: ".grid .grid__square",
+      opacity: 1,
+      easing: "linear",
+      delay: this.$anime.stagger(30),
+    });
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -17,24 +27,15 @@ export default {};
   justify-content: stretch;
   flex-direction: column;
   overflow: hidden;
-  width: 80%;
-  height: 40vh;
-  margin-top: auto;
   transform: perspective(150px) rotateX(20deg);
   z-index: 0;
-  background: linear-gradient($black-color, $dark-purple-color 70%);
-  animation: move 1.5s linear alternate infinite;
-  @include keyframes(move) {
-    to {
-      transform: perspective(150px) rotateX(20deg) translateY(50px);
-    }
-  }
+  background: linear-gradient($dark-purple-color1, $dark-purple-color 70%);
   &:before {
     content: "";
     display: block;
     width: 100%;
     height: 10px;
-    background: $black-color;
+    background: $dark-purple-color1;
     position: absolute;
     top: 0;
     left: 0;
@@ -46,6 +47,7 @@ export default {};
     border: 1px solid;
     border-image-slice: 1;
     border-width: 1px;
+    opacity: 0;
     border-image-source: linear-gradient(
       to top,
       $purple-color,
