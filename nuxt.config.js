@@ -1,0 +1,47 @@
+module.exports = {
+  /*
+   ** Headers of the page
+   */
+  env: {
+    baseUrl: process.env.production || "http://localhost:3000",
+  },
+  head: {
+    title: "nuxt-test",
+    meta: [
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "description", name: "description", content: "nuxt test project" },
+    ],
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+  },
+  /*
+   ** Customize the progress bar color
+   */
+  loading: { color: "#3B8070" },
+  /*
+   ** Build configuration
+   */
+  modules: ["@nuxtjs/style-resources"],
+  router: {
+    base: process.env.baseUrl,
+  },
+  css: ["~/assets/css/common.scss"],
+  styleResources: {
+    scss: ["~/assets/css/global.scss"],
+  },
+  build: {
+    /*
+     ** Run ESLint on save
+     */
+    extend(config, { isDev, isClient }) {
+      if (isDev && isClient) {
+        config.module.rules.push({
+          enforce: "pre",
+          test: /\.(js|vue)$/,
+          loader: "eslint-loader",
+          exclude: /(node_modules)/,
+        });
+      }
+    },
+  },
+};

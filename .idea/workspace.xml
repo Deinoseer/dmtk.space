@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0945ce72-e5a5-4233-9a3f-c8ec8671d47a" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EditorConfigPreviewManager">
+    <editorConfig file="$PROJECT_DIR$/.editorconfig" previewFile="$PROJECT_DIR$/layouts/default.vue" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectId" id="1aS7shRhrfcrFXzoNEj8g6h3ZAu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="D:\Work\Vue\dmtk.space\node_modules\prettier" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0945ce72-e5a5-4233-9a3f-c8ec8671d47a" name="Default Changelist" comment="" />
+      <created>1586717349250</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586717349250</updated>
+      <workItem from="1586717350660" duration="5016000" />
+      <workItem from="1586726924793" duration="205000" />
+      <workItem from="1586727361219" duration="50000" />
+      <workItem from="1586727420652" duration="49000" />
+      <workItem from="1586727478595" duration="276000" />
+      <workItem from="1586727767979" duration="98000" />
+      <workItem from="1586727878578" duration="286000" />
+      <workItem from="1586728327011" duration="61000" />
+      <workItem from="1586728406198" duration="313000" />
+      <workItem from="1586728739434" duration="11000" />
+      <workItem from="1586728763314" duration="131000" />
+      <workItem from="1586728907694" duration="65000" />
+      <workItem from="1586728984245" duration="42000" />
+      <workItem from="1586729036230" duration="314000" />
+      <workItem from="1586729360614" duration="214000" />
+      <workItem from="1586729588622" duration="157000" />
+      <workItem from="1586729761952" duration="385000" />
+      <workItem from="1586730168023" duration="79000" />
+      <workItem from="1586730258180" duration="152000" />
+      <workItem from="1586732156070" duration="1002000" />
+      <workItem from="1586738227248" duration="12000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586729603756">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1586729603756" />
+    <state x="1977" y="151" width="1384" height="708" key="SettingsEditor" timestamp="1586732551895">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1977" y="151" width="1384" height="708" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1586732551895" />
+  </component>
+</project>
