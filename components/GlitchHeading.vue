@@ -30,5 +30,6 @@ export default {
   line-height: 1;
   letter-spacing: 0.3rem;
   text-transform: uppercase;
+  user-select: none;
 }
 </style>
