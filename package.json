@@ -13,6 +13,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@octokit/rest": "^17.3.0",
     "nuxt": "^2.0.0",
     "vue-animejs": "^2.1.1"
   },

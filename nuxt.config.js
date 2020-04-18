@@ -30,7 +30,7 @@ module.exports = {
   styleResources: {
     scss: ["~/assets/css/global.scss"],
   },
-  plugins: ["~/plugins/anime.js"],
+  plugins: ["~/plugins/anime.js", "~/plugins/octokit.js"],
   build: {
     /*
      ** Run ESLint on save

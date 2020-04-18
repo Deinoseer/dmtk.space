@@ -2,19 +2,28 @@
   <section class="container">
     <section class="heading"><glitchHeading text="dmtk.space" /></section>
     <section class="sun"><sun /></section>
-    <aside class="menu">
-      <div class="neon" @click="showModal = true">vue todo</div>
-      <div class="neon">vue svg-kit</div>
-      <div class="neon">sevensuns</div>
-      <div class="neon">vue crypto</div>
-    </aside>
+    <div class="menu">
+      <div
+        class="neon"
+        :key="repo.id"
+        v-for="repo in gitHubRepos"
+        @click="openModal(repo)"
+      >
+        <span v-if="!repo.disabled && !repo.archived">{{ repo.name }}</span>
+      </div>
+    </div>
     <section class="social">
       <!-- <a href="mailto:deinos097@gmail.com">deinos097@gmail.com</a> -->
     </section>
     <section class="grid">
       <grid />
     </section>
-    <modal :show-modal="showModal" @closeModal="showModal = false" />
+    <modal
+      v-if="showModal"
+      :show-modal="showModal"
+      :content="modalContent"
+      @closeModal="closeModal"
+    />
   </section>
 </template>
 
@@ -27,12 +36,40 @@ import Modal from "~/components/Modal";
 export default {
   data: () => ({
     showModal: false,
+    modalContent: {},
+    gitHubRepos: [],
   }),
+  created() {
+    this.$octokit.request("GET /users/Deinoseer/repos").then((response) => {
+      response.data.forEach((rep) => {
+        this.gitHubRepos.push({
+          disabled: rep.disabled,
+          archived: rep.archived,
+          ssh_url: rep.ssh_url,
+          svn_url: rep.svn_url,
+          name: rep.name,
+          homepage: rep.homepage,
+        });
+      });
+    });
+  },
   components: {
     Grid,
     Sun,
     GlitchHeading,
     Modal,
+  },
+  methods: {
+    openModal($attrs) {
+      this.modalContent = {
+        ...$attrs,
+      };
+      this.showModal = true;
+    },
+    closeModal() {
+      this.modalContent = {};
+      this.showModal = false;
+    },
   },
 };
 </script>
@@ -56,7 +93,8 @@ export default {
   justify-self: center;
 }
 .menu {
-  grid-area: 2 / 2 / 3 / 3;
+  grid-area: 2 / 1 / 3 / 3;
+  justify-self: flex-end;
 }
 .social {
   grid-area: 2 / 4 / 3 / 5;

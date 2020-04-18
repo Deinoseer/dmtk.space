@@ -7,13 +7,33 @@
 <script>
 export default {
   mounted() {
-    const timeline = this.$anime.timeline();
-    timeline.add({
-      targets: ".grid .grid__square",
-      opacity: 1,
-      easing: "linear",
-      delay: this.$anime.stagger(30),
-    });
+    const gridEl = ".grid .grid__square";
+    this.$anime
+      .timeline()
+      .add({
+        targets: gridEl,
+        opacity: 1,
+        easing: "linear",
+        delay: this.$anime.stagger(30),
+      })
+      .finished.then(() => {
+        this.$anime
+          .timeline({
+            loop: true,
+          })
+          .add({
+            targets: gridEl,
+            boxShadow: [
+              {
+                value: [
+                  "inset 0px 0px 3px 1px #fff, inset 0px 0px 10px 5px #7700a6",
+                ],
+              },
+            ],
+            easing: "linear",
+            delay: this.$anime.stagger(200),
+          });
+      });
   },
 };
 </script>
@@ -53,10 +73,7 @@ export default {
       $purple-color,
       $hot-pink-color
     );
-    transition: 0.5s ease box-shadow;
-    &:hover {
-      box-shadow: inset 0px 0px 20px 0px $hot-pink-color;
-    }
+    transition: $transition-time ease box-shadow;
   }
 }
 </style>

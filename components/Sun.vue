@@ -46,11 +46,11 @@ export default {
   background: transparent;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0px 0px 15px 3px $hot-pink-color;
-  animation: fade 2s linear alternate infinite;
+  animation: fade 3s linear alternate infinite;
   @include keyframes(fade) {
     to {
-      box-shadow: 0px 0px 15px 10px $orange-color;
+      box-shadow: 0 0 30px 10px #fff, 0 0 50px 30px $orange-color,
+        0 0 70px 60px $purple-color;
     }
   }
   &:before {
