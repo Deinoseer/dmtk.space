@@ -3,6 +3,7 @@
     <section class="heading"><glitchHeading text="dmtk.space" /></section>
     <section class="sun"><sun /></section>
     <div class="menu">
+      <div class="menu__title">&lt;Projects/&gt;</div>
       <div
         class="neon"
         :key="repo.id"
@@ -13,7 +14,7 @@
       </div>
     </div>
     <section class="social">
-      <!-- <a href="mailto:deinos097@gmail.com">deinos097@gmail.com</a> -->
+      <a class="link" href="mailto:deinos097@gmail.com">deinos097@gmail.com</a>
     </section>
     <section class="grid">
       <grid />
@@ -87,17 +88,28 @@ export default {
 .heading {
   grid-area: 1 / 2 / 2 / 5;
   margin-top: 30px;
+  text-align: center;
 }
 .sun {
   grid-area: 2 / 3 / 3 / 4;
   justify-self: center;
 }
 .menu {
+  position: relative;
   grid-area: 2 / 1 / 3 / 3;
   justify-self: flex-end;
+  align-self: center;
+  &__title {
+    @include fontConsolas(0.8rem, $yellow-color);
+    letter-spacing: 2px;
+    text-shadow: 2px 3px 2px $red-color;
+  }
 }
 .social {
-  grid-area: 2 / 4 / 3 / 5;
+  position: absolute;
+  z-index: 999;
+  bottom: 8px;
+  right: 8px;
 }
 .grid {
   grid-area: 3 / 1 / 4 / 6;
@@ -108,7 +120,7 @@ export default {
   height: 40vh;
 }
 .neon {
-  @include font(3rem, $white-color);
+  @include font(2.5rem, $white-color);
   cursor: pointer;
   user-select: none;
   & + & {

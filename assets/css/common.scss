@@ -4,11 +4,18 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: "Consolas";
+  src: url("~assets/fonts/Consolas.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 body {
   overflow: hidden;
   height: 100%;
   background: $black-color;
   background: linear-gradient($dark-purple-color, $black-color 20%);
+  font-size: 14px;
   &:before {
     content: "";
     position: absolute;
@@ -26,7 +33,39 @@ body {
       linear-gradient(to bottom, $dark-purple-color1 1px, transparent 1px);
   }
 }
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
 
 .glitch {
   @include gltich();
+}
+
+a.link,
+.marked a {
+  @include fontConsolas(inherit);
+  position: relative;
+  text-decoration: none;
+  color: $yellow-color;
+  text-shadow: 1px 2px 2px $red-color;
+  transition: $transition-time ease all;
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: $yellow-color;
+    transition: $transition-time ease width;
+  }
+  &:hover {
+    filter: hue-rotate(40deg);
+    &::before {
+      width: 100%;
+    }
+  }
 }

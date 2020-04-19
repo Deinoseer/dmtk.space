@@ -1,11 +1,14 @@
 <template>
-  <div class="sun">
+  <div class="sun" :class="{ sun_fade: loaded }">
     <div v-for="i in 10" :key="i" class="sun__part"></div>
   </div>
 </template>
 
 <script>
 export default {
+  data: () => ({
+    loaded: false,
+  }),
   mounted() {
     const sunEl = ".sun";
     const sunAnimate = this.$anime
@@ -19,6 +22,7 @@ export default {
         easing: "linear",
       });
     sunAnimate.finished.then(() => {
+      this.loaded = true;
       this.$anime
         .timeline({
           loop: true,
@@ -46,11 +50,13 @@ export default {
   background: transparent;
   border-radius: 50%;
   overflow: hidden;
-  animation: fade 3s linear alternate infinite;
-  @include keyframes(fade) {
-    to {
-      box-shadow: 0 0 30px 10px #fff, 0 0 50px 30px $orange-color,
-        0 0 70px 60px $purple-color;
+  &_fade {
+    animation: fade 3s linear alternate infinite;
+    @include keyframes(fade) {
+      to {
+        box-shadow: 0 0 30px 10px #fff, 0 0 50px 30px $orange-color,
+          0 0 70px 60px $purple-color;
+      }
     }
   }
   &:before {

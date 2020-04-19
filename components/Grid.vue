@@ -20,6 +20,7 @@ export default {
         this.$anime
           .timeline({
             loop: true,
+            direction: "alternate",
           })
           .add({
             targets: gridEl,
@@ -31,7 +32,7 @@ export default {
               },
             ],
             easing: "linear",
-            delay: this.$anime.stagger(200),
+            delay: this.$anime.stagger(600, { grid: [10, 10], from: "center" }),
           });
       });
   },

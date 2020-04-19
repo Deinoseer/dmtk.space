@@ -7,18 +7,23 @@
       <div class="modal__title">{{ content.name }}</div>
       <div class="modal__row">
         <div class="modal__column">
-          <div class="modal__github">git clone {{ content.ssh_url }}</div>
-          <div class="modal__github-link">
-            <a target="_blank" :href="content.svn_url">{{ content.svn_url }}</a>
-          </div>
-          <div class="modal__homepage" v-if="content.homepage">
-            <a target="_blank" :href="content.homepage">{{
-              content.homepage
-            }}</a>
-          </div>
-          <div class="modal__readme" v-html="readmeText"></div>
+          <div class="modal__readme marked" v-html="previewText"></div>
         </div>
         <div class="modal__column">
+          <div
+            class="modal__github"
+            :class="{ modal__github_copied: copied }"
+            @click="copyClick"
+            ref="cloneLink"
+          >
+            git clone {{ content.ssh_url }}
+          </div>
+          <div class="modal__github-link">
+            <h3>Repo:</h3>
+            <a class="link" target="_blank" :href="content.svn_url">{{
+              content.svn_url
+            }}</a>
+          </div>
           <div class="modal__image">
             <img :src="image" alt="" />
           </div>
@@ -30,12 +35,15 @@
 </template>
 
 <script>
+const marked = require("marked");
+
 export default {
   data: () => ({
     contentLoaded: false,
     modalClass: ".modal",
     image: "",
     readmeText: "",
+    copied: false,
   }),
   props: {
     showModal: Boolean,
@@ -63,7 +71,30 @@ export default {
       true
     );
   },
+  computed: {
+    previewText() {
+      marked.setOptions({
+        renderer: new marked.Renderer(),
+        gfm: true,
+        tables: true,
+        breaks: true,
+        pedantic: false,
+        sanitize: true,
+        smartLists: true,
+        smartypants: false,
+      });
+      return marked(this.readmeText);
+    },
+  },
   methods: {
+    copyClick() {
+      this.copied = true;
+      window.getSelection().selectAllChildren(this.$refs.cloneLink);
+      document.execCommand("copy");
+      setTimeout(() => {
+        this.copied = false;
+      }, 3000);
+    },
     getReadme() {
       this.$octokit
         .request(`GET /repos/Deinoseer/${this.content.name}/contents/README.md`)
@@ -75,7 +106,7 @@ export default {
     },
     getImage() {
       this.$octokit
-        .request(`GET /repos/Deinoseer/${this.content.name}/contents/demo.png`)
+        .request(`GET /repos/Deinoseer/${this.content.name}/contents/demo.jpg`)
         .then((response) => {
           this.image = response.data.download_url;
         })
@@ -146,7 +177,26 @@ export default {
   background: $dark-purple-color1;
   border: 1px solid $orange-color;
   box-sizing: content-box;
-  overflow: auto;
+  overflow: hidden;
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px $yellow-color;
+    border-radius: 0;
+  }
+  ::selection {
+    color: $dark-purple-color;
+    background: $yellow-color;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient($yellow-color, $orange-color);
+    width: 6px;
+    transition: $transition-time ease all;
+    &:hover {
+      background: $orange-color;
+    }
+  }
   &__load {
     position: absolute;
     top: 50%;
@@ -156,17 +206,65 @@ export default {
     user-select: none;
   }
   &__content {
-    //@include font(2rem, $white-color);
+    @include fontConsolas(1.1rem, $white-color);
     color: $white-color;
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 6px;
+    margin-right: 4px;
   }
   &__row {
     display: flex;
   }
   &__column {
     flex: 0 1 50%;
+    padding: 3rem 0;
+    &:nth-child(1) {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
   }
   &__readme {
-    white-space: pre;
+    line-height: 1.6rem;
+  }
+  &__image {
+    img {
+      max-width: 100%;
+    }
+  }
+  &__github {
+    position: relative;
+    display: inline-flex;
+    font-size: 1rem;
+    line-height: 1rem;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: transparent;
+    border: 1px solid $yellow-color;
+    transform: skewX(-20deg);
+    padding: 8px 15px;
+    margin: 0 10px 10px;
+    &-link {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      a {
+        margin-left: 12px;
+      }
+    }
+    &_copied {
+      &:before {
+        content: "copied";
+        position: absolute;
+        font-size: 12px;
+        right: -49px;
+        top: 50%;
+        display: block;
+        background: $hot-pink-color;
+        padding: 3px 6px;
+        transform: translateY(-50%);
+      }
+    }
   }
   &__title {
     text-align: center;
