@@ -1,10 +1,23 @@
-# nuxt-test
+# Retrowave dmtk.space
 
-> nuxt test project
+My project list showroom
+
+## Stack:
+
+- nuxt.js
+- anime.js
+- octokit (for parse github data)
+- marked (for readme markup)
+
+## Demo
+
+Demo url: [http://dmtk.space](http://dmtk.space)
+
+![Demo Image](demo.jpg)
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 $ npm install # Or yarn install
 
@@ -20,4 +33,3 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
-
