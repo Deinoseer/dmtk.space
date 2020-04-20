@@ -1,8 +1,10 @@
 <template>
   <section class="container">
-    <section class="heading"><glitchHeading text="dmtk.space" /></section>
-    <section class="sun"><sun /></section>
-    <div class="menu">
+    <section class="heading">
+      <glitchHeading text="dmtk.space" />
+    </section>
+    <section class="sun"><sun @sun-ready="setMenuAnimation" /></section>
+    <div class="menu" v-show="sunReady">
       <div class="menu__title">&lt;Projects/&gt;</div>
       <div
         class="neon"
@@ -14,13 +16,14 @@
       </div>
     </div>
     <section class="social">
-      <a class="link" href="mailto:deinos097@gmail.com">deinos097@gmail.com</a>
+      <a class="link" :href="'mailto:' + email">{{ email }}</a>
     </section>
     <section class="grid">
       <grid />
     </section>
     <modal
       v-if="showModal"
+      :stop-lying="stopLying"
       :show-modal="showModal"
       :content="modalContent"
       @closeModal="closeModal"
@@ -37,8 +40,12 @@ import Modal from "~/components/Modal";
 export default {
   data: () => ({
     showModal: false,
+    sunReady: false,
+    stopLying: false,
     modalContent: {},
     gitHubRepos: [],
+    modalOpenCount: 0,
+    email: "deinos097@gmail.com",
   }),
   created() {
     this.$octokit.request("GET /users/Deinoseer/repos").then((response) => {
@@ -61,15 +68,36 @@ export default {
     Modal,
   },
   methods: {
+    setMenuAnimation() {
+      this.sunReady = true;
+      this.$nextTick(() => {
+        this.$anime.timeline().add({
+          targets: ".neon",
+          scale: [0, 1],
+          opacity: [0, 1],
+          translateX: [-999, 0],
+          easing: "easeOutQuad",
+          delay: this.$anime.stagger(600),
+        });
+      });
+    },
     openModal($attrs) {
       this.modalContent = {
         ...$attrs,
       };
       this.showModal = true;
+      this.modalOpenCount++;
     },
     closeModal() {
       this.modalContent = {};
       this.showModal = false;
+    },
+  },
+  watch: {
+    modalOpenCount: {
+      handler(val) {
+        val === 3 ? (this.stopLying = true) : false;
+      },
     },
   },
 };
@@ -97,7 +125,8 @@ export default {
 .menu {
   position: relative;
   grid-area: 2 / 1 / 3 / 3;
-  justify-self: flex-end;
+  justify-self: flex-start;
+  margin-left: 10%;
   align-self: center;
   &__title {
     @include fontConsolas(0.8rem, $yellow-color);

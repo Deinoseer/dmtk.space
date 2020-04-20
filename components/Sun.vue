@@ -23,6 +23,7 @@ export default {
       });
     sunAnimate.finished.then(() => {
       this.loaded = true;
+      this.$emit("sun-ready", true);
       this.$anime
         .timeline({
           loop: true,

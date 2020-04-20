@@ -46,6 +46,7 @@ export default {
     copied: false,
   }),
   props: {
+    stopLying: Boolean,
     showModal: Boolean,
     content: {
       type: Object,
@@ -53,8 +54,15 @@ export default {
     },
   },
   mounted() {
-    this.getReadme();
-    this.getImage();
+    Promise.all([this.getReadme(), this.getImage()]).then(() => {
+      if (!this.stopLying) {
+        setTimeout(() => {
+          this.contentLoaded = true;
+        }, 3000);
+      } else {
+        this.contentLoaded = true;
+      }
+    });
     this.startOpenAnimation();
     addEventListener(
       "click",
@@ -96,7 +104,7 @@ export default {
       }, 3000);
     },
     getReadme() {
-      this.$octokit
+      return this.$octokit
         .request(`GET /repos/Deinoseer/${this.content.name}/contents/README.md`)
         .then((response) => {
           this.readmeText = decodeURIComponent(
@@ -105,7 +113,7 @@ export default {
         });
     },
     getImage() {
-      this.$octokit
+      return this.$octokit
         .request(`GET /repos/Deinoseer/${this.content.name}/contents/demo.jpg`)
         .then((response) => {
           this.image = response.data.download_url;
@@ -145,9 +153,6 @@ export default {
             easing: "steps(3)",
             delay: this.$anime.stagger(300),
           });
-        setTimeout(() => {
-          this.contentLoaded = true;
-        }, 3000);
       });
     },
     startCloseAnimation() {
@@ -158,7 +163,6 @@ export default {
         easing: "easeInQuad",
       });
       closeAnimate.finished.then(() => {
-        this.contentLoaded = false;
         this.$emit("closeModal");
       });
     },
