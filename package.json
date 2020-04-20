@@ -1,7 +1,7 @@
 {
-  "name": "nuxt-test",
+  "name": "dmtk.space",
   "version": "1.0.0",
-  "description": "nuxt test project",
+  "description": "Projects list showroom with nuxt.js and anime.js",
   "author": "deinos097@gmail.com",
   "private": true,
   "scripts": {
