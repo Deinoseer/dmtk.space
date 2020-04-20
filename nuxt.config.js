@@ -7,7 +7,7 @@ module.exports = {
     baseUrl: process.env.production || "http://localhost:3000",
   },
   head: {
-    title: "nuxt-test",
+    title: "dmtk.space",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
