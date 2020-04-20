@@ -66,14 +66,10 @@ export default {
     width: 10%;
     height: 50px;
     border: 1px solid;
-    border-image-slice: 1;
     border-width: 1px;
     opacity: 0;
-    border-image-source: linear-gradient(
-      to top,
-      $purple-color,
-      $hot-pink-color
-    );
+    border-image: linear-gradient(to top, $purple-color, $hot-pink-color) 1
+      stretch;
     transition: $transition-time ease box-shadow;
   }
 }
