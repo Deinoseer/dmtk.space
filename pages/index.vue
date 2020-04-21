@@ -102,6 +102,9 @@ export default {
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   overflow: hidden;
+  @include mw968() {
+    grid-template-rows: 150px 1fr 1fr repeat(2, 1fr);
+  }
 }
 .heading {
   grid-area: 1 / 1 / 2 / 6;
