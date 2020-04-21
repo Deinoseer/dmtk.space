@@ -184,6 +184,7 @@ export default {
   overflow: hidden;
   ::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
   }
   ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px $yellow-color;
@@ -208,6 +209,9 @@ export default {
     transform: translateY(-50%) translateX(-50%);
     @include font(3rem, $orange-color);
     user-select: none;
+    @include mw968() {
+      font-size: 2rem;
+    }
   }
   &__content {
     @include fontConsolas(1.1rem, $white-color);
@@ -219,13 +223,23 @@ export default {
   }
   &__row {
     display: flex;
+    @include mw968() {
+      flex-direction: column-reverse;
+    }
   }
   &__column {
     flex: 0 1 50%;
     padding: 3rem 0;
+    @include mw968() {
+      flex: 1;
+      padding: 2rem;
+    }
     &:nth-child(1) {
       padding-left: 3rem;
       padding-right: 3rem;
+      @include mw968() {
+        padding: 0 2rem 2rem;
+      }
     }
   }
   &__readme {
@@ -275,6 +289,9 @@ export default {
     margin-top: 50px;
     @include font(4rem, $yellow-color);
     text-shadow: 2px 3px 2px $red-color;
+    @include mw968() {
+      font-size: 2.5rem;
+    }
   }
   &__close {
     position: absolute;

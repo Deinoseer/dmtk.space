@@ -51,6 +51,12 @@ export default {
   transform: perspective(150px) rotateX(20deg);
   z-index: 0;
   background: linear-gradient($dark-purple-color1, $dark-purple-color 70%);
+  @include mw968() {
+    transform: perspective(80px) rotateX(20deg);
+  }
+  @include mw480() {
+    transform: perspective(45px) rotateX(15deg);
+  }
   &:before {
     content: "";
     display: block;
@@ -71,6 +77,13 @@ export default {
     border-image: linear-gradient(to top, $purple-color, $hot-pink-color) 1
       stretch;
     transition: $transition-time ease box-shadow;
+    @include mw968() {
+      height: 30px;
+    }
+    @include mw480() {
+      width: 20%;
+      height: 32px;
+    }
   }
 }
 </style>

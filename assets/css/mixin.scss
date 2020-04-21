@@ -66,3 +66,24 @@
     @content;
   }
 }
+
+@mixin mw1550() {
+  @media screen and (max-width: 1550px) {
+    @content;
+  }
+}
+@mixin mw1280() {
+  @media screen and (max-width: 1280px) {
+    @content;
+  }
+}
+@mixin mw968() {
+  @media screen and (max-width: 968px) {
+    @content;
+  }
+}
+@mixin mw480() {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}

@@ -114,7 +114,7 @@ export default {
   overflow: hidden;
 }
 .heading {
-  grid-area: 1 / 2 / 2 / 5;
+  grid-area: 1 / 1 / 2 / 6;
   margin-top: 30px;
   text-align: center;
 }
@@ -144,14 +144,23 @@ export default {
   grid-area: 3 / 1 / 4 / 6;
   justify-self: center;
   align-self: center;
-  width: 85%;
+  width: 90%;
   margin: auto;
   height: 40vh;
+  @include mw1280() {
+    width: 100%;
+  }
+  @include mw968() {
+    height: 30vh;
+  }
 }
 .neon {
   @include font(2.5rem, $white-color);
   cursor: pointer;
   user-select: none;
+  @include mw480() {
+    font-size: 2rem;
+  }
   & + & {
     margin-top: 8px;
   }

@@ -31,5 +31,11 @@ export default {
   letter-spacing: 0.3rem;
   text-transform: uppercase;
   user-select: none;
+  @include mw968() {
+    font-size: 4.5rem;
+  }
+  @include mw480() {
+    font-size: 3rem;
+  }
 }
 </style>

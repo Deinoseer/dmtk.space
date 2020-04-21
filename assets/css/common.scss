@@ -10,12 +10,17 @@
   font-weight: normal;
   font-style: normal;
 }
+html {
+  font-size: 15px;
+  @include mw1550() {
+    font-size: 12px;
+  }
+}
 body {
   overflow: hidden;
   height: 100%;
   background: $black-color;
   background: linear-gradient($dark-purple-color, $black-color 20%);
-  font-size: 14px;
   &:before {
     content: "";
     position: absolute;

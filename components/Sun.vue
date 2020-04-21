@@ -51,6 +51,14 @@ export default {
   background: transparent;
   border-radius: 50%;
   overflow: hidden;
+  @include mw1280() {
+    width: 280px;
+    height: 280px;
+  }
+  @include mw968() {
+    width: 250px;
+    height: 250px;
+  }
   &_fade {
     animation: fade 3s linear alternate infinite;
     @include keyframes(fade) {
