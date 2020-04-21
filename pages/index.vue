@@ -3,17 +3,18 @@
     <section class="heading">
       <glitchHeading text="dmtk.space" />
     </section>
-    <section class="sun"><sun @sun-ready="setMenuAnimation" /></section>
+    <section class="sun"><sun @sun-ready="sunReady = true" /></section>
     <div class="menu" v-show="sunReady">
       <div class="menu__title">&lt;Projects/&gt;</div>
-      <div
-        class="neon"
+      <neon-link
         :key="repo.id"
+        :text="repo.name"
+        :disabled="repo.diabled"
+        :archived="repo.archived"
+        :start-animation="sunReady"
         v-for="repo in gitHubRepos"
-        @click="openModal(repo)"
-      >
-        <span v-if="!repo.disabled && !repo.archived">{{ repo.name }}</span>
-      </div>
+        @click.native="openModal(repo)"
+      />
     </div>
     <section class="social">
       <a class="link" :href="'mailto:' + email">{{ email }}</a>
@@ -36,6 +37,7 @@ import Grid from "~/components/Grid";
 import Sun from "~/components/Sun";
 import GlitchHeading from "~/components/GlitchHeading";
 import Modal from "~/components/Modal";
+import NeonLink from "~/components/NeonLink";
 
 export default {
   data: () => ({
@@ -66,21 +68,9 @@ export default {
     Sun,
     GlitchHeading,
     Modal,
+    NeonLink,
   },
   methods: {
-    setMenuAnimation() {
-      this.sunReady = true;
-      this.$nextTick(() => {
-        this.$anime.timeline().add({
-          targets: ".neon",
-          scale: [0, 1],
-          opacity: [0, 1],
-          translateX: [-999, 0],
-          easing: "easeOutQuad",
-          delay: this.$anime.stagger(600),
-        });
-      });
-    },
     openModal($attrs) {
       this.modalContent = {
         ...$attrs,
@@ -152,20 +142,6 @@ export default {
   }
   @include mw968() {
     height: 30vh;
-  }
-}
-.neon {
-  @include font(2.5rem, $white-color);
-  cursor: pointer;
-  user-select: none;
-  @include mw480() {
-    font-size: 2rem;
-  }
-  & + & {
-    margin-top: 8px;
-  }
-  &:hover {
-    @include neon($light-blue-color);
   }
 }
 </style>
