@@ -98,26 +98,27 @@ export default {
   min-height: 100vh;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 1fr 1fr 40vh repeat(2, 1fr);
+  grid-template-rows: 1fr 1fr 40vh;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   overflow: hidden;
   @include mw968() {
-    grid-template-rows: 150px 1fr 1fr repeat(2, 1fr);
+    grid-template-rows: 150px 1fr 1fr;
   }
 }
 .heading {
-  grid-area: 1 / 1 / 2 / 6;
+  grid-area: 1 / 1 / 1 / 6;
   margin-top: 30px;
   text-align: center;
 }
 .sun {
-  grid-area: 2 / 3 / 3 / 4;
+  grid-area: 2 / 3 / 2 / 4;
   justify-self: center;
+  align-self: center;
 }
 .menu {
   position: relative;
-  grid-area: 2 / 1 / 3 / 3;
+  grid-area: 2 / 1 / 2 / 3;
   justify-self: flex-start;
   margin-left: 10%;
   align-self: center;
@@ -128,23 +129,20 @@ export default {
   }
 }
 .social {
-  position: absolute;
+  position: fixed;
   z-index: 999;
   bottom: 8px;
   right: 8px;
 }
 .grid {
-  grid-area: 3 / 1 / 4 / 6;
+  grid-area: 3 / 1 / 3 / 6;
   justify-self: center;
-  align-self: center;
+  align-self: end;
   width: 90%;
-  margin: auto;
   height: 40vh;
+  margin: 0 auto;
   @include mw1280() {
     width: 100%;
-  }
-  @include mw968() {
-    height: 30vh;
   }
 }
 </style>

@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-    <div class="modal__close">close</div>
+    <div class="modal__close" @click="closeModal">close</div>
   </div>
 </template>
 
@@ -54,6 +54,7 @@ export default {
     },
   },
   mounted() {
+    this.startOpenAnimation();
     Promise.all([this.getReadme(), this.getImage()]).then(() => {
       if (!this.stopLying) {
         setTimeout(() => {
@@ -63,15 +64,11 @@ export default {
         this.contentLoaded = true;
       }
     });
-    this.startOpenAnimation();
     addEventListener(
       "click",
       (e) => {
         if (this.showModal) {
-          if (
-            !e.target.closest(this.modalClass) ||
-            e.target.classList.contains("modal__close")
-          ) {
+          if (!e.target.closest(this.modalClass)) {
             this.startCloseAnimation();
           }
         }
@@ -165,6 +162,9 @@ export default {
       closeAnimate.finished.then(() => {
         this.$emit("closeModal");
       });
+    },
+    closeModal() {
+      this.startCloseAnimation();
     },
   },
 };

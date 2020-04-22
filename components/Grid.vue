@@ -78,7 +78,8 @@ export default {
       stretch;
     transition: $transition-time ease box-shadow;
     @include mw968() {
-      height: 30px;
+      height: 36px;
+      width: 13%;
     }
     @include mw480() {
       width: 20%;
