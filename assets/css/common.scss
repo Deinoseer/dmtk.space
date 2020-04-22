@@ -12,13 +12,16 @@
 }
 html {
   font-size: 15px;
+  overflow: hidden;
   @include mw1550() {
     font-size: 12px;
   }
+  @include mw968() {
+    overflow-y: auto;
+  }
 }
 body {
-  overflow: hidden;
-  height: 100%;
+  margin: 0;
   background: $black-color;
   background: linear-gradient($dark-purple-color, $black-color 20%);
   &:before {
