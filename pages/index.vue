@@ -3,7 +3,13 @@
     <section class="heading">
       <glitchHeading text="dmtk.space" />
     </section>
-    <section class="sun"><sun @sun-ready="sunReady = true" /></section>
+    <div v-show="sunReady" class="star-field-one">
+      <star-field :show-stars="showStars" />
+    </div>
+    <div v-show="sunReady" class="star-field-two">
+      <star-field :show-stars="showStars" />
+    </div>
+    <section class="sun"><sun @sun-ready="afterSunIsReady" /></section>
     <div class="menu" v-show="sunReady">
       <div class="menu__title">&lt;Projects/&gt;</div>
       <neon-link
@@ -38,12 +44,14 @@ import Sun from "~/components/Sun";
 import GlitchHeading from "~/components/GlitchHeading";
 import Modal from "~/components/Modal";
 import NeonLink from "~/components/NeonLink";
+import StarField from "~/components/StarField";
 
 export default {
   data: () => ({
     showModal: false,
     sunReady: false,
     stopLying: false,
+    showStars: false,
     modalContent: {},
     gitHubRepos: [],
     modalOpenCount: 0,
@@ -69,18 +77,25 @@ export default {
     GlitchHeading,
     Modal,
     NeonLink,
+    StarField,
   },
   methods: {
+    afterSunIsReady() {
+      this.sunReady = true;
+      this.showStars = true;
+    },
     openModal($attrs) {
       this.modalContent = {
         ...$attrs,
       };
       this.showModal = true;
+      this.showStars = false;
       this.modalOpenCount++;
     },
     closeModal() {
       this.modalContent = {};
       this.showModal = false;
+      this.showStars = true;
     },
   },
   watch: {
@@ -94,6 +109,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.star-field-one {
+  grid-area: 2/4/2/4;
+}
+.star-field-two {
+  grid-area: 2/2/2/3;
+}
 .container {
   min-height: 100vh;
   display: grid;
