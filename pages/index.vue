@@ -138,11 +138,11 @@ export default {
   align-self: center;
 }
 .menu {
-  position: relative;
-  grid-area: 2 / 1 / 2 / 3;
-  justify-self: flex-start;
-  margin-left: 10%;
-  align-self: center;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10%;
   &__title {
     @include fontConsolas(0.8rem, $yellow-color);
     letter-spacing: 2px;
