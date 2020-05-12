@@ -173,6 +173,7 @@ export default {
 <style lang="scss" scoped>
 .modal {
   position: absolute;
+  z-index: 9;
   top: 50%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
