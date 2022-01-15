@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@octokit/rest": "^17.3.0",
-    "marked": "^0.8.2",
+    "marked": "^4.0.10",
     "nuxt": "^2.0.0",
     "vue-animejs": "^2.1.1"
   },
